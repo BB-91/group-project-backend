@@ -5,6 +5,8 @@ import router from "./routes/profileAPI.js";
 import { sequelize } from "./db/index.js";
 import LOCAL_API from "../src/data/localAPI.mjs"
 
+// New Branch test commit
+
 const app = express();
 const port = process.env.PORT || LOCAL_API.PORT;
 
@@ -22,4 +24,4 @@ app.use(LOCAL_API.PATH, router);
 
 app.listen(port, (req, res) => {
     console.log("Server is running on port " + port);
-});
+});  
