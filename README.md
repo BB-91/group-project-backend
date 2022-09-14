@@ -5,7 +5,7 @@
 
         CREATE database local_profiles_api;
 3. Refresh the schemas page to confirm the database was created.
-4. In the terminal, cd into to `...\src\local-api`, and run:
+4. In the terminal, cd into `...\src\local-api`, and run:
 
         npm run watch
 5. Leave the server running.
