@@ -3,7 +3,7 @@ import bodyParser from "body-parser";
 import cors from "cors";
 import router from "./routes/profileAPI.js";
 import { sequelize } from "./db/index.js";
-import LOCAL_API from "../src/data/localAPI.mjs"
+import LOCAL_API from "../data/localAPI.mjs"
 
 const app = express();
 const port = process.env.PORT || LOCAL_API.PORT;
