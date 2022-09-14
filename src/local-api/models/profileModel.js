@@ -23,6 +23,10 @@ export const Profile = sequelize.define("profiles", {
         type: Sequelize.STRING,
         allowNull: false, 
     },
+    country: {
+        type: Sequelize.STRING,
+        allowNull: false, 
+    },    
     city: {
         type: Sequelize.STRING,
         allowNull: false, 
