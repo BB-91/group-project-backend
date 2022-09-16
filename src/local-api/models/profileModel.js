@@ -1,8 +1,6 @@
 import {Sequelize} from "sequelize";
 import { sequelize } from "../db/index.js";
 
-// body: {pdf: <obj>, firstName: <str>, lastName: <str>, city: <str>, state: <str>, zipCode: <int>, keywords: <arr?>,}
-
 export const Profile = sequelize.define("profiles", {
     id: {
         type: Sequelize.INTEGER,
@@ -11,7 +9,6 @@ export const Profile = sequelize.define("profiles", {
         primaryKey: true
     },
     pdf: {
-        // type: Sequelize.JSON,
         type: Sequelize.BLOB,
         allowNull: false,
     },
@@ -31,13 +28,13 @@ export const Profile = sequelize.define("profiles", {
         type: Sequelize.STRING,
         allowNull: false, 
     },
-    state: {
+    region: {
         type: Sequelize.STRING,
         allowNull: false, 
     },
     zipCode: {
-        type: Sequelize.INTEGER,
-        allowNull: false, 
+        type: Sequelize.STRING,
+        allowNull: true,
     },
     keywords: {
         type: Sequelize.JSON, // actually an array, but no array datatype in SQL
