@@ -8,10 +8,6 @@ export const Profile = sequelize.define("profiles", {
         allowNull: false,
         primaryKey: true
     },
-    pdf: {
-        type: Sequelize.BLOB,
-        allowNull: false,
-    },
     firstName: {
         type: Sequelize.STRING,
         allowNull: false, 
