@@ -1,5 +1,5 @@
 import { Profile } from "../models/profileModel.js";    
-import validator from "../../src/data/patchValidator.mjs";
+// import validator from "../../src/data/patchValidator.mjs";
 
 export const getProfiles = (req, res) => {
     Profile.findAll()

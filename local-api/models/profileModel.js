@@ -9,10 +9,32 @@ export const Profile = sequelize.define("profiles", {
         allowNull: false,
         primaryKey: true
     },
-
-    data: {
-        type: Sequelize.JSON,
+    pdf: {
+        type: Sequelize.BLOB
     },
+    firstName: {
+        type: Sequelize.STRING
+    },
+    lastName: {
+        type: Sequelize.STRING
+    },
+    country: {
+        type: Sequelize.STRING
+    },
+    city: {
+        type: Sequelize.STRING
+    },
+    state: {
+        type: Sequelize.STRING
+    },
+    zipCode: {
+        type: Sequelize.STRING
+    },
+    keywords: {
+        type: Sequelize.STRING
+    }
+
+
 },
     {
         timestamps: false
