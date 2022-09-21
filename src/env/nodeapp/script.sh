@@ -35,8 +35,12 @@ echo --------------- Move into App Folder -----------
 cd ../vagrant/src/local-api
 pwd
 
+echo ----------- Install forever --------------------
+sudo npm install forever -g
+
 echo -------------- Install Dependancies ------------
 npm install --no-bin-links
 
 echo -------------------- Run App -------------------
-node index.js
+sudo forever stopall
+sudo forever start index.js
