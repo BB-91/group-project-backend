@@ -6,7 +6,7 @@ import { sequelize } from "./db/index.js";
 import LOCAL_API from "../data/localAPI.mjs"
 
 const app = express();
-const port = process.env.PORT || LOCAL_API.PORT;
+const port = process.env.PORT || 3010;
 
 sequelize.sync()
 .then(result => {
@@ -16,7 +16,8 @@ sequelize.sync()
     console.log(`err: `, err)
 })
 
-app.use(cors({origin: "http://localhost:3000"}))
+// app.use(cors({origin: "http://localhost:3000"}))
+app.use(cors({origin: "*"}))
 app.use(bodyParser.json());
 app.use(LOCAL_API.PATH, router);
 
