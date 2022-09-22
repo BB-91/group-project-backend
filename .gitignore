@@ -1,1 +1,2 @@
-src/local-api/node_modules
+*secret*
+*node_modules*
