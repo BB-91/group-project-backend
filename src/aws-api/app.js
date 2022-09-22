@@ -1,6 +1,8 @@
 import * as dotenv from 'dotenv'; // see https://github.com/motdotla/dotenv#how-do-i-use-dotenv-with-import
 dotenv.config();
 import express from 'express';
+
+import bodyParser from "body-parser";
 import cors from "cors";
 
 import aws from "aws-sdk";
@@ -13,6 +15,7 @@ const port = 3050;
 
 // app.use(cors({origin: `http://localhost:${port}`}));
 app.use(cors({origin: `http://localhost:3000`}));
+app.use(bodyParser.json());
 
 app.listen(port, () => {
     console.log(`listening on port: ${port}`);
