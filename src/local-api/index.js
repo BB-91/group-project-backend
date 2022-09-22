@@ -16,7 +16,7 @@ sequelize.sync()
     console.log(`err: `, err)
 })
 
-app.use(cors({origin: "http://localhost:3000"}))
+app.use(cors({origin: "http://localhost:3000"}));
 app.use(bodyParser.json());
 app.use(LOCAL_API.PATH, router);
 
