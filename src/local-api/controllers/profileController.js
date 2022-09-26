@@ -4,10 +4,10 @@ import validator from "../../data/patchValidator.mjs";
 export const getProfiles = (req, res) => {
     Profile.findAll()
         .then(profile => {
-            res.status(200).send(profile)
+            res.status(200).send(profile);
         })
         .catch(err => {
-            console.log(err)
+            console.log(err);
         })
 };
 
