@@ -9,11 +9,12 @@ import aws from "aws-sdk";
 import multer from "multer";
 import multerS3 from "multer-s3";
 
+import { port } from '../data/s3ServerData.mjs';
 
 
 
 const app = express();
-const port = 3050;
+// const port = 3050;
 
 // app.use(cors({origin: `http://localhost:${port}`}));
 // app.use(cors({origin: `http://localhost:3000`}));
@@ -75,7 +76,8 @@ const getPresignedURL = async (filename) => {
 // }
 
 app.post('/upload', upload.single('file'), async (req, res, next) => {
-    res.send('Successfully uploaded ' + req.file.location + ' location!')
+    // call s3Uploader.upload() here...
+    res.send('Successfully uploaded ' + req.file.location + ' location!');
 })
 
 app.get("/list", async (req, res) => {
