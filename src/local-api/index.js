@@ -24,3 +24,5 @@ app.use(LOCAL_API.PATH, router);
 app.listen(port, (req, res) => {
     console.log("Server is running on port " + port);
 });
+
+export default app;
