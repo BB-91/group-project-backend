@@ -9,7 +9,7 @@ chai.use(chaiHttp);
 describe('Post Profile Service', () => {
     it('should create a profile and send to database', (done) => {
         const profile = {
-        firstName: 'Jesse',
+        firstName: 'Test1',
         lastName: 'lastName',
         country : 'US',
         city: 'Winnsboro',
