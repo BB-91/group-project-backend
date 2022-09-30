@@ -96,14 +96,21 @@ app.get("/list", async (req, res) => {
 // })
 
 app.get("/download/:filename", async (req, res) => {
-    const filename = req.params.filename;
+    const filename = req.params.filename
     let result = await s3.getObject({ Bucket: BUCKET, Key: filename }).promise();
-    console.log("TESTING GETTING OF PRESIGNED URL FROM DOWNLOAD");
-    const preSignedUrl = await getPresignedURL(filename);
-    console.log("preSignedUrl: ", preSignedUrl)
-    console.log("result: ", result)
-    res.send(result.Body);
+    console.log("result: ", result);
+    res.status(200).send(result.Body)
 })
+
+// app.get("/download/:filename", async (req, res) => {
+//     const filename = req.params.filename;
+//     let result = await s3.getObject({ Bucket: BUCKET, Key: filename }).promise();
+//     console.log("TESTING GETTING OF PRESIGNED URL FROM DOWNLOAD");
+//     const preSignedUrl = await getPresignedURL(filename);
+//     console.log("preSignedUrl: ", preSignedUrl)
+//     console.log("result: ", result)
+//     res.send(result.Body);
+// })
 
 app.get("/getsignedurl/:filename", async (req, res) => {
     const filename = req.params.filename;

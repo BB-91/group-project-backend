@@ -22,5 +22,5 @@ class S3Uploader {
 }
 
 
-const s3Uploader = new S3Uploader()
+const s3Uploader = new S3Uploader();
 export default s3Uploader;
