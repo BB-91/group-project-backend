@@ -9,13 +9,9 @@ import aws from "aws-sdk";
 import multer from "multer";
 import multerS3 from "multer-s3";
 
-
-
+import { port } from '../data/s3ServerData.mjs';
 
 const app = express();
-const port = 3050;
-
-// app.use(cors({origin: `http://localhost:${port}`}));
 // app.use(cors({origin: `http://localhost:3000`}));
 app.use(cors({origin: `*`}));
 app.use(bodyParser.json());
@@ -25,9 +21,6 @@ app.listen(port, () => {
 });
 
 const { ACCESS_SECRET, ACCESS_KEY, REGION, BUCKET } = process.env;
-
-
-
 
 aws.config.update({
     secretAccessKey: ACCESS_SECRET,
@@ -50,7 +43,6 @@ const upload = multer({
 })
 
 const getPresignedURL = async (filename) => {
-    // const s3 = createS3Instance();
     const params = {
         Bucket: BUCKET,
         Key: filename,
@@ -58,67 +50,36 @@ const getPresignedURL = async (filename) => {
     }
 
     const preSignedURL = await s3.getSignedUrl('getObject', params);
-    // const preSignedURL = await s3.getSignedUrl('getObject', params).promise();
     return preSignedURL;
 }
 
-// const getPresignedURL = async (bucketName, key) => {
-//     const s3 = createS3Instance();
-//     const params = {
-//         Bucket: bucketName,
-//         Key: key,
-//         Expires: 60
-//     }
-
-//     const preSignedURL = await s3.getSignedUrl('getObject', params);
-//     return preSignedURL;
-// }
-
 app.post('/upload', upload.single('file'), async (req, res, next) => {
-    res.send('Successfully uploaded ' + req.file.location + ' location!')
+    // call s3Uploader.upload() here...
+    // use pre-signed s3 url here
+    res.send('Successfully uploaded ' + req.file.location + ' location!');
 })
 
 app.get("/list", async (req, res) => {
     const result = await s3.listObjectsV2({ Bucket: BUCKET }).promise();
     const fileNames = result.Contents.map(item => item.Key);
-    // console.log("result: ", result);
-    // console.log("fileNames: ", fileNames)
     res.send(fileNames);
     
 })
 
-// app.get("/download/:filename", async (req, res) => {
-//     const filename = req.params.filename
-//     let result = await s3.getObject({ Bucket: BUCKET, Key: filename }).promise();
-//     res.send(result.Body)
-// })
-
 app.get("/download/:filename", async (req, res) => {
-    const filename = req.params.filename;
+    const filename = req.params.filename
     let result = await s3.getObject({ Bucket: BUCKET, Key: filename }).promise();
-    console.log("TESTING GETTING OF PRESIGNED URL FROM DOWNLOAD");
-    const preSignedUrl = await getPresignedURL(filename);
-    console.log("preSignedUrl: ", preSignedUrl)
-    console.log("result: ", result)
-    res.send(result.Body);
+    console.log("result: ", result);
+    res.status(200).send(result.Body)
 })
 
 app.get("/getsignedurl/:filename", async (req, res) => {
     const filename = req.params.filename;
     const preSignedUrl = await getPresignedURL(filename);
-    // res.send("you tried to get signed url for " + filename);
-
-    // let result = await s3.getObject({ Bucket: BUCKET, Key: filename }).promise();
-    // const preSignedUrl = await getPresignedURL(filename);
-    res.send(preSignedUrl);
+    // res.send(preSignedUrl);
+    // res.send(JSON.stringify(preSignedUrl)); // need to wrap inside object????
+    res.send(JSON.stringify({preSignedUrl})); // need to wrap inside object????
 })
-
-
-// app.get("/download/:filename", async (req, res) => {
-//     const filename = req.params.filename;
-//     let result = await s3.getObject({ Bucket: BUCKET, Key: filename }).promise();
-//     res.send(result.Body);
-// })
 
 app.delete("/delete/:filename", async (req, res) => {
     const filename = req.params.filename;
