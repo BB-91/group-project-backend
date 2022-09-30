@@ -1,5 +1,5 @@
 import { serverURL } from "./serverData.mjs";
-
+// need to use the presigned s3 url in the fetch req
 class S3Uploader {
     #serverURL = serverURL;
 
