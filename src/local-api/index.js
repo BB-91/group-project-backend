@@ -8,13 +8,26 @@ import LOCAL_API from "../data/localAPI.mjs"
 const app = express();
 const port = process.env.PORT || LOCAL_API.PORT;
 
-sequelize.sync()
+
+const connect = () => {
+    sequelize.sync()
 .then(result => {
     console.log(`result: `, result);
 })
 .catch(err => {
     console.log(`err: `, err)
 })
+}
+
+setTimeout(connect, 50000);
+
+// sequelize.sync()
+// .then(result => {
+//     console.log(`result: `, result);
+// })
+// .catch(err => {
+//     console.log(`err: `, err)
+// })
 
 // app.use(cors({origin: "http://localhost:3000"}));
 app.use(cors({origin: `*`}));
