@@ -8,7 +8,10 @@ import LOCAL_API from "../data/localAPI.mjs"
 const app = express();
 const port = process.env.PORT || LOCAL_API.PORT;
 
-const connection = () => {
+const delayTime = 50000
+
+const connect = () => {
+
     sequelize.sync()
 .then(result => {
     console.log(`result: `, result);
@@ -17,8 +20,8 @@ const connection = () => {
     console.log(`err: `, err)
 })
 }
-
-setTimeout(connection, 50000);
+console.log("connecting in 50 seconds....")
+setTimeout(connect, delayTime);
 
 // sequelize.sync()
 // .then(result => {
