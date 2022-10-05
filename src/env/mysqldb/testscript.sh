@@ -14,6 +14,7 @@ sudo systemctl status mysql.service
 sudo mysql -u root -ppassword -e "CREATE USER 'group1'@'localhost' IDENTIFIED BY 'password';"
 
 sudo mysql -u group1 -ppassword -e "CREATE DATABASE test_local_profiles_api;"
+
 sudo mysql -u root -ppassword -e "GRANT ALL PRIVILEGES ON test_local_profiles_api.* to 'group1';"
 
 
