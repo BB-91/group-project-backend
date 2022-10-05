@@ -23,6 +23,7 @@ const connect = () => {
 }
 
 console.log("connecting in 50 seconds......")
+console.log(process.env.NODE_ENV)
 setTimeout(connect, delayTime);
 
 // sequelize.sync()
