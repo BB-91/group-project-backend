@@ -70,18 +70,18 @@ describe('Get All Profiles Service', () => {
 
 })
 
-describe('Update a Profile Service', () => {
-    it('partially update a profile - Completed to Active status', (done) => {
-        chai.request(app)
-            .patch('/api/profiles')
-            .send({  firstName: "Olen" , where: {id: "1"}})
-            .end((err, res) => {
-                chai.request(app)
-                .get('/api/profiles')
-                .end((err, res) => {
-                    res.status.should.equal(200);
-                    done();
-                })
-        })
-    })
-})
+// describe('Update a Profile Service', () => {
+//     it('partially update a profile - Completed to Active status', (done) => {
+//         chai.request(app)
+//             .patch('/api/profiles')
+//             .send({  firstName: "Olen" , where: {id: "1"}})
+//             .end((err, res) => {
+//                 chai.request(app)
+//                 .get('/api/profiles')
+//                 .end((err, res) => {
+//                     res.status.should.equal(200);
+//                     done();
+//                 })
+//         })
+//     })
+// })
