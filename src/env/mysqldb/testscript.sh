@@ -12,7 +12,6 @@ sudo systemctl status mysql.service
 sudo mysql -u root -ppassword -e "CREATE USER 'root' IDENTIFIED WITH mysql_native_password BY 'password';"
 sudo mysql -u root -ppassword -e "GRANT ALL PRIVILEGES ON test_local_profiles_api.* to 'root';"
 
-
 sudo mysql -u root -ppassword -e "CREATE DATABASE test_local_profiles_api;"
 
 # sudo mysql -uroot -p$2 -e "USE local_profiles;"
@@ -26,7 +25,7 @@ sudo mysql -u root -ppassword -e "USE test_local_profiles_api; CREATE TABLE prof
     state VARCHAR(255) NOT NULL,
     zipcode INT NOT NULL,
     keywords JSON NOT NULL,
-    s3FileName VARCHAR(255) NOT NULL,
+    s3FileName VARCHAR(255),
     PRIMARY KEY (ID)
 );"
 
