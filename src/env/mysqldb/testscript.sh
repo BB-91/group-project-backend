@@ -10,12 +10,12 @@ sudo systemctl start mysql.service
 sudo systemctl status mysql.service
 
 sudo mysql -u root -p password -e "CREATE USER 'root' IDENTIFIED BY 'password';"
-sudo mysql -u root -p password -e "GRANT ALL PRIVILEGES ON local_profiles_api.* to 'root';"
+sudo mysql -u root -p password -e "GRANT ALL PRIVILEGES ON test_local_profiles_api.* to 'root';"
 
 
-sudo mysql -u root -p password -e "CREATE DATABASE local_profiles_api;"
+sudo mysql -u root -p password -e "CREATE DATABASE test_local_profiles_api;"
 
-sudo mysql -u root -p password -e "USE local_profiles_api; CREATE TABLE profiles (
+sudo mysql -u root -p password -e "USE test_local_profiles_api; CREATE TABLE profiles (
     id INT NOT NULL AUTO_INCREMENT,
     pdf BLOB NOT NULL,
     firstname VARCHAR(255) NOT NULL,
