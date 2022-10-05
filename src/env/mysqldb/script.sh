@@ -1,8 +1,9 @@
 # #!/bin/bash
 
 # install mysql -----
-apt update
-apt install mysql-server -y
+sudo apt-get install mysql-server -y
+sudo apt autoremove 
+sudo apt-get update
 
 
 sudo systemctl start mysql.service
@@ -14,7 +15,6 @@ sudo mysql -u root -p password -e "GRANT ALL PRIVILEGES ON local_profiles_api.* 
 
 sudo mysql -u root -p password -e "CREATE DATABASE local_profiles_api;"
 
-# sudo mysql -uroot -p$2 -e "USE local_profiles;"
 
 sudo mysql -u root -p password -e "USE local_profiles_api; CREATE TABLE profiles (
     id INT NOT NULL AUTO_INCREMENT,
