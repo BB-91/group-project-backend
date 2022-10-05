@@ -23,7 +23,7 @@ dotenv.config();
 
     const testConfig = {
         HOST: "localhost",
-        USER: "group1",
+        USER: "root",
         PASSWORD: "password",
         DB: "test_local_profiles_api",
         DIALECT: "mysql"
