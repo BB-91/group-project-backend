@@ -1,6 +1,6 @@
 # #!/bin/bash
 
-# install mysql
+# install mysql -----
 apt update
 apt install mysql-server -y
 
