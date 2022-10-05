@@ -8,8 +8,8 @@ apt install mysql-server -y
 sudo systemctl start mysql.service
 sudo systemctl status mysql.service
 
-sudo mysql -uroot -p password -e "CREATE USER 'root' IDENTIFIED BY 'password';"
-sudo mysql -uroot -p password -e "GRANT ALL PRIVILEGES ON local_profiles_api.* to 'root';"
+sudo mysql -u root -p password -e "CREATE USER 'root' IDENTIFIED BY 'password';"
+sudo mysql -u root -p password -e "GRANT ALL PRIVILEGES ON local_profiles_api.* to 'root';"
 
 
 sudo mysql -u root -p password -e "CREATE DATABASE local_profiles_api;"
