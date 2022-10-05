@@ -38,7 +38,7 @@ export const Profile = sequelize.define("profiles", {
     },
     s3FileName: {
         type: Sequelize.STRING,
-        allowNull: false,
+        allowNull: true,
     },    
 
 },
