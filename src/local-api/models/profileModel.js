@@ -36,6 +36,10 @@ export const Profile = sequelize.define("profiles", {
         type: Sequelize.JSON, // actually an array, but no array datatype in SQL
         allowNull: true,
     },
+    s3FileName: {
+        type: Sequelize.STRING,
+        allowNull: false,
+    }
 
 },
     {
