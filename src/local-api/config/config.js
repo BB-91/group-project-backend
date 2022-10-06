@@ -20,7 +20,7 @@ dotenv.config();
         DB: process.env.DB,
         DIALECT: "mysql"
     };
-    // const adminConfig = {
+    // const adminConfig = {--
     //     HOST: process.env.DB_PATH,
     //     USER: process.env.USER1,
     //     PASSWORD: process.env.PASSWORD1,
