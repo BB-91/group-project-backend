@@ -10,7 +10,7 @@ if (process.env.NODE_ENV !== 'test') {
         dialect: "mysql",
         host: config.HOST,
     })
-    
+
 } else {
 
     sequelize = new Sequelize(testConfig.DB, testConfig.USER, testConfig.PASSWORD, {
@@ -33,3 +33,8 @@ if (process.env.NODE_ENV !== 'test') {
 
 
 export { sequelize };
+
+  // sequelize = new Sequelize(adminConfig.DB, adminConfig.USER, adminConfig.PASSWORD, {
+    //     dialect: "mysql",
+    //     host: adminConfig.HOST,
+    // })

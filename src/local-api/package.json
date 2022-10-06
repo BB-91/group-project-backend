@@ -5,7 +5,7 @@
   "main": "index.js",
   "type": "module",
   "scripts": {
-    "test": "cross-env NODE_ENV=test mocha --recursive",
+    "test": "cross-env NODE_ENV=test mocha --exit",
     "watch": "nodemon index.js"
   },
   "keywords": [],
