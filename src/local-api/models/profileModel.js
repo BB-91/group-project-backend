@@ -8,6 +8,10 @@ export const Profile = sequelize.define("profiles", {
         allowNull: false,
         primaryKey: true
     },
+    cohortYear: {
+        type: Sequelize.STRING,
+        allowNull: false, 
+    },
     firstName: {
         type: Sequelize.STRING,
         allowNull: false, 

@@ -22,5 +22,5 @@ app.use(bodyParser.json());
 app.use(LOCAL_API.PATH, router);
 
 app.listen(port, (req, res) => {
-    console.log("Server is running on port " + port);
+    console.log("Server for MySQL is listening on port " + port);
 });

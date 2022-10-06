@@ -17,7 +17,7 @@ app.use(cors({origin: `*`}));
 app.use(bodyParser.json());
 
 app.listen(port, () => {
-    console.log(`listening on port: ${port}`);
+    console.log(`Server for AWS S3 listening on port: ${port}`);
 });
 
 const { ACCESS_SECRET, ACCESS_KEY, REGION, BUCKET } = process.env;
@@ -33,7 +33,7 @@ const s3 = new aws.S3();
 const upload = multer({
     storage: multerS3({
         s3: s3,
-        acl: "public-read",
+        // acl: "public-read",
         bucket: BUCKET,
         key: (req, file, cb) => {
             console.log("file: ", file);
@@ -42,15 +42,55 @@ const upload = multer({
     })
 })
 
-const getPresignedURL = async (filename) => {
+// const upload = multer({
+//     storage: multerS3({
+//         s3: s3,
+//         acl: "public-read",
+//         bucket: BUCKET,
+//         key: (req, file, cb) => {
+//             console.log("file: ", file);
+//             cb(null, file.originalname)
+//         }
+//     })
+// })
+
+// const getPresignedURL = async (filename) => {
+//     const params = {
+//         Bucket: BUCKET,
+//         Key: filename,
+//         Expires: 60
+//     }
+
+//     const preSignedURL = await s3.getSignedUrl('getObject', params);
+//     return preSignedURL;
+// }
+
+const S3_OPERATION = {
+    getObject: 'getObject',
+    putObject: 'putObject',
+}
+
+const _getSignedURL = async (filename, operation) => {
+    if (!Object.values(S3_OPERATION).includes(operation)) {
+        throw new Error(`Invalid operation: '${operation}'`)
+    }
+
     const params = {
         Bucket: BUCKET,
         Key: filename,
         Expires: 60
     }
 
-    const preSignedURL = await s3.getSignedUrl('getObject', params);
-    return preSignedURL;
+    const signedURL = await s3.getSignedUrl(operation, params);
+    return signedURL;
+}
+
+const getSignedDownloadURL = async (filename) => {
+    return _getSignedURL(filename, S3_OPERATION.getObject)
+}
+
+const getSignedUploadURL = async (filename) => {
+    return _getSignedURL(filename, S3_OPERATION.putObject)
 }
 
 app.post('/upload', upload.single('file'), async (req, res, next) => {
@@ -73,12 +113,27 @@ app.get("/download/:filename", async (req, res) => {
     res.status(200).send(result.Body)
 })
 
-app.get("/getsignedurl/:filename", async (req, res) => {
+
+
+
+// app.get("/getSignedDownloadUrl/:filename", async (req, res) => {
+//     const filename = req.params.filename;
+//     const preSignedUrl = await getPresignedURL(filename);
+//     // res.send(preSignedUrl);
+//     // res.send(JSON.stringify(preSignedUrl)); // need to wrap inside object????
+//     res.send(JSON.stringify({preSignedUrl})); // need to wrap inside object????
+// })
+
+app.get("/getSignedDownloadUrl/:filename", async (req, res) => {
     const filename = req.params.filename;
-    const preSignedUrl = await getPresignedURL(filename);
-    // res.send(preSignedUrl);
-    // res.send(JSON.stringify(preSignedUrl)); // need to wrap inside object????
-    res.send(JSON.stringify({preSignedUrl})); // need to wrap inside object????
+    const signedUrl = await getSignedDownloadURL(filename);
+    res.send(JSON.stringify({signedUrl}));
+})
+
+app.get("/getSignedUploadUrl/:filename", async (req, res) => {
+    const filename = req.params.filename;
+    const signedUrl = await getSignedUploadURL(filename);
+    res.send(JSON.stringify({signedUrl}));
 })
 
 app.delete("/delete/:filename", async (req, res) => {
