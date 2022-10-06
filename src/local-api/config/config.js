@@ -13,10 +13,18 @@ dotenv.config();
 // db = "local_profiles_api",
 // host = process.env.DB_PATH
 
-    const config = {
+    const rootconfig = {
         HOST: process.env.DB_PATH,
         USER: process.env.USER,
         PASSWORD: process.env.PASSWORD,
+        DB: process.env.DB,
+        DIALECT: "mysql"
+    };
+
+    const adminconfig = {
+        HOST: process.env.DB_PATH,
+        USER: process.env.USER1,
+        PASSWORD: process.env.PASSWORD1,
         DB: process.env.DB,
         DIALECT: "mysql"
     };
@@ -30,4 +38,4 @@ dotenv.config();
     }
 
 
-export { config, testConfig } ;
+export { rootconfig, adminconfig, testConfig } ;
