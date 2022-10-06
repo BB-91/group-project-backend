@@ -31,7 +31,7 @@ dotenv.config();
     const testConfig = {
         HOST: "localhost",
         USER: "root",
-        PASSWORD: "password",
+        PASSWORD: "Dallas-1005",
         DB: "test_local_profiles_api",
         DIALECT: "mysql"
     }
