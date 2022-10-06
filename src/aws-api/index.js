@@ -42,29 +42,6 @@ const upload = multer({
     })
 })
 
-// const upload = multer({
-//     storage: multerS3({
-//         s3: s3,
-//         acl: "public-read",
-//         bucket: BUCKET,
-//         key: (req, file, cb) => {
-//             console.log("file: ", file);
-//             cb(null, file.originalname)
-//         }
-//     })
-// })
-
-// const getPresignedURL = async (filename) => {
-//     const params = {
-//         Bucket: BUCKET,
-//         Key: filename,
-//         Expires: 60
-//     }
-
-//     const preSignedURL = await s3.getSignedUrl('getObject', params);
-//     return preSignedURL;
-// }
-
 const S3_OPERATION = {
     getObject: 'getObject',
     putObject: 'putObject',
@@ -94,8 +71,6 @@ const getSignedUploadURL = async (filename) => {
 }
 
 app.post('/upload', upload.single('file'), async (req, res, next) => {
-    // call s3Uploader.upload() here...
-    // use pre-signed s3 url here
     res.send('Successfully uploaded ' + req.file.location + ' location!');
 })
 
@@ -113,16 +88,6 @@ app.get("/download/:filename", async (req, res) => {
     res.status(200).send(result.Body)
 })
 
-
-
-
-// app.get("/getSignedDownloadUrl/:filename", async (req, res) => {
-//     const filename = req.params.filename;
-//     const preSignedUrl = await getPresignedURL(filename);
-//     // res.send(preSignedUrl);
-//     // res.send(JSON.stringify(preSignedUrl)); // need to wrap inside object????
-//     res.send(JSON.stringify({preSignedUrl})); // need to wrap inside object????
-// })
 
 app.get("/getSignedDownloadUrl/:filename", async (req, res) => {
     const filename = req.params.filename;
