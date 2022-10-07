@@ -4,7 +4,7 @@ import { config, testConfig } from "../config/config.js";
 let sequelize;
 
 if (process.env.NODE_ENV !== 'test') {
-    // --- release code ------------------------------------------------------------------
+    // --- release code ---------------------------------------------------------------
     sequelize = new Sequelize(config.DB, config.USER, config.PASSWORD, {
         dialect: "mysql",
         host: config.HOST,
